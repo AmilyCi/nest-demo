@@ -1,8 +1,23 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Version, Request, Query, Headers, HttpCode, Res, Req } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Version,
+  Request,
+  Query,
+  Headers,
+  HttpCode,
+  Res,
+  Req,
+} from '@nestjs/common';
+import * as svgCaptcha from 'svg-captcha';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import * as svgCaptcha from 'svg-captcha'
 
 // @Controller({
 //   path: 'user',
@@ -75,7 +90,9 @@ export class UserController {
 
   @Post('create')
   createUser(@Req() req, @Body() body) {
-    if (req.session.code.toLocaleLowerCase() === body?.code?.toLocaleLowerCase()) {
+    if (
+      req.session.code.toLocaleLowerCase() === body?.code?.toLocaleLowerCase()
+    ) {
       return {
         code: 200,
         message: '验证码正确',

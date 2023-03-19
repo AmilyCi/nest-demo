@@ -2,11 +2,13 @@ import { VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as session from 'express-session';
-import { Request, Response, NextFunction } from 'express';
 import * as cors from 'cors';
+import { Request, Response, NextFunction } from 'express';
+import { ResponseNew } from './common/responseNew';
+import { HttpFillter } from './common/filter';
 
 const whiteList = ['/list'];
-function MiddlewareAll(req: Request, res: Response, next: NextFunction) { 
+function MiddlewareAll(req: Request, res: Response, next: NextFunction) {
   if (whiteList.includes(req.originalUrl)) {
     next();
   } else {
@@ -23,7 +25,18 @@ async function bootstrap() {
   });
   app.use(cors());
   app.use(MiddlewareAll);
-  app.use(session({ secret: 'cx', name: 'cx.session', rolling: true, cookie: { maxAge: null } }));
+  app.use(
+    session({
+      secret: 'cx',
+      name: 'cx.session',
+      rolling: true,
+      cookie: { maxAge: null },
+    }),
+  );
+  // 请求拦截器
+  app.useGlobalInterceptors(new ResponseNew());
+  // 错误拦截器
+  app.useGlobalFilters(new HttpFillter());
   await app.listen(3000);
 }
 bootstrap();
