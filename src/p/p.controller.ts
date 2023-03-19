@@ -13,7 +13,7 @@ import {
   ParseArrayPipe,
   ParseUUIDPipe,
   ParseEnumPipe,
-  DefaultValuePipe
+  DefaultValuePipe,
 } from '@nestjs/common';
 // ValidationPipe
 // ParseIntPipe
@@ -27,7 +27,6 @@ import * as uuid from 'uuid';
 import { PService } from './p.service';
 import { CreatePDto } from './dto/create-p.dto';
 import { UpdatePDto } from './dto/update-p.dto';
-
 
 console.log(uuid.v4());
 

@@ -1,7 +1,6 @@
-import { CallHandler, Injectable, NestInterceptor } from "@nestjs/common";
+import { CallHandler, Injectable, NestInterceptor } from '@nestjs/common';
 import { map } from 'rxjs/operators';
-import { Observable } from "rxjs";
-
+import { Observable } from 'rxjs';
 
 interface Data<T> {
   data: T;

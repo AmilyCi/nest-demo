@@ -21,4 +21,4 @@ export class HttpFillter implements ExceptionFilter {
       status,
     });
   }
-};
+}
