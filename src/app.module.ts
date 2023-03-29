@@ -8,6 +8,9 @@ import { ListModule } from './list/list.module';
 import { CustomModule } from './custom/custom.module';
 import { ConfigModule } from './config/config.module';
 import { PModule } from './p/p.module';
+import { LoginModule } from './login/login.module';
+import { SpiderModule } from './spider/spider.module';
+import { GuardModule } from './guard/guard.module';
 
 @Module({
   imports: [
@@ -17,6 +20,9 @@ import { PModule } from './p/p.module';
     CustomModule,
     ConfigModule.forRoot('/cxx'),
     PModule,
+    LoginModule,
+    SpiderModule,
+    GuardModule,
   ],
   controllers: [AppController, DemoController],
   providers: [AppService],
